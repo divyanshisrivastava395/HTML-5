@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #f4f4f4);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Title */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input fields */
+input {
+    margin: 8px;
+    padding: 8px;
+    width: 180px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2196f3;
+}
+
+/* Buttons */
+button {
+    margin: 8px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196f3;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+/* Output box */
+#output {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+/* Student card */
+#output p {
+    background: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #2196f3;
+    border-radius: 5px;
+    margin: 10px 0;
+}
