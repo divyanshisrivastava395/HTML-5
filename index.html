@@ -1,27 +1,102 @@
-<<<<<<< HEAD
-<h1>hello</h1>
-=======
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Class Result Sheet</title>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #dfe9f3, #b6cbe1);
+}
+
+h1 {
+    margin-top: 20px;
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px #aaa;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+    border: 4px solid #2c3e50;   
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+th, td {
+    border: 2px solid #2c3e50;   
+    padding: 10px;
+}
+
+th {
+    background-color: #34495e;
+    color: white;
+    font-size: 16px;
+}
+
+td {
+    background-color: #f9fbfd;
+}
+
+td[colspan="3"] {
+    font-weight: bold;
+    background-color: #d5f5e3;
+}
+    </style>
 </head>
-<body bgcolor="red">
-    <table border="1">
-        <tr>
-            <th>NAME</th>
-            <th>ROLL NO</th>
-            <th>CLASS</th>
-        </tr>
-        <tr>
-            <td>disha</td>
-            <td>56</td>
-            <td><mark>CSE 17</mark></td>
-        </tr>
-    </table>
-    
+
+<body>
+
+<h1>School Result</h1>
+
+<table>
+    <tr>
+        <th rowspan="2">Roll No</th>
+        <th colspan="3">Subjects</th>
+        <th rowspan="2">Total</th>
+    </tr>
+
+    <tr>
+        <th>Mathematics</th>
+        <th>Physics</th>
+        <th>Chemistry</th>
+    </tr>
+    <tr>
+        <td rowspan="2">001</td>
+        <td>85</td>
+        <td>78</td>
+        <td>90</td>
+        <td rowspan="2">253</td>
+    </tr>
+    <tr>
+        <td colspan="3">Result: PASS</td>
+    </tr>
+
+    <tr>
+        <td rowspan="2">002</td>
+        <td>65</td>
+        <td>70</td>
+        <td>60</td>
+        <td rowspan="2">195</td>
+    </tr>
+    <tr>
+        <td colspan="3">Result: PASS</td>
+    </tr>
+
+    <tr>
+        <td rowspan="2">003</td>
+        <td>40</td>
+        <td>35</td>
+        <td>30</td>
+        <td rowspan="2">105</td>
+    </tr>
+    <tr>
+        <td colspan="3">Result: FAIL</td>
+    </tr>
+
+</table>
+
 </body>
 </html>
->>>>>>> d8c9450fab7d5b7fa1f63a79e2b50dcac6aeba9b
