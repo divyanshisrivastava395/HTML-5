@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #dfe9f3, #b6cbe1);
+}
+.container{
+    background:white;
+    box-shadow:0px 0px 10px gray;
+    border-radius: 10px;
+    margin:auto;
+    padding:25px;
+    width:400px;
+}
