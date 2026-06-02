@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Zero to Finalist: My First Hackathon Diary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #faf6ef;
+    --warm: #f5ede0;
+    --accent: #c8440a;
+    --accent2: #2a6b4f;
+    --muted: #8a7a68;
+    --rule: #d9cfc3;
+    --tag-bg: #fff3e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(255,255,255,0.04) 28px,
+      rgba(255,255,255,0.04) 29px
+    );
+  }
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(250,246,239,0.65);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(250,246,239,0.45);
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* CONTENT */
+  .content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* OPENING */
+  .opening {
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--ink);
+    border-left: 3px solid var(--accent);
+    padding-left: 24px;
+    margin-bottom: 52px;
+  }
+
+  /* DAY ENTRY */
+  .day-entry {
+    margin-bottom: 56px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .day-entry:last-of-type { border-bottom: none; }
+
+  .day-label {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .day-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .day-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .day-entry p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #3a3028;
+    margin-bottom: 14px;
+  }
+  .day-entry p:last-child { margin-bottom: 0; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--warm);
+    border-left: 3px solid var(--accent2);
+    padding: 18px 22px;
+    border-radius: 0 6px 6px 0;
+    margin: 24px 0;
+    font-size: 15px;
+    color: var(--accent2);
+    font-weight: 500;
+  }
+  .callout.orange {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* SUMMARY */
+  .summary {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 48px 44px;
+    margin-top: 60px;
+  }
+  .summary h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: var(--paper);
+  }
+  .summary ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .summary li {
+    display: flex;
+    gap: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(250,246,239,0.8);
+  }
+  .summary li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 500;
+  }
+  .summary strong { color: #ffffff; }
+  .summary em { color: rgba(250,246,239,0.95); font-style: italic; }
+  .summary u { text-decoration-color: var(--accent); }
+
+  /* CLOSING QUOTE */
+  .closing-quote {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(250,246,239,0.15);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--paper);
+  }
+  .closing-quote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* STATS BAR */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 48px 0;
+  }
+  .stat {
+    background: var(--warm);
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* TAGS */
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    background: var(--tag-bg);
+    color: var(--muted);
+    padding: 5px 12px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    border: 1px solid var(--rule);
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 52px 24px 44px; }
+    .content { padding: 40px 24px 72px; }
+    .stats { grid-template-columns: 1fr; }
+    .summary { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Personal Journal · Hackathon</div>
+    <h1>From Zero<br>to <em>Finalist</em>:<br>My First Hackathon</h1>
+    <p class="hero-sub">A raw, honest diary of 8 days building a meme-powered dodge game — surviving bugs, bad code, and sleepless nights at Code Clutch.</p>
+    <div class="hero-meta">
+      <span>📅 8 Days</span>
+      <span>🎮 Game: DodgeLife</span>
+      <span>🏆 Top 21 of 107 Teams</span>
+    </div>
+  </div>
+</header>
+
+<main class="content">
+
+  <p class="opening">
+    I signed up for my very first hackathon armed with nothing but a rough idea and no real strategy. The next 8 days turned into a whirlwind of sleepless nights, endless debugging sessions, AI-generated rabbit holes, and moments I'll never forget. This is that journey — told exactly the way I lived it, straight from my diary.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-number">107</span>
+      <span class="stat-label">Total Teams</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">Top 21</span>
+      <span class="stat-label">We Reached</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">8</span>
+      <span class="stat-label">Days to Build</span>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">01</span>
+      <span class="day-title">The Spark</span>
+    </div>
+    <div class="day-date">Saturday — Day 1</div>
+    <p>I registered for the hackathon and immediately started searching for ideas. I read through <strong>rule books and concept guides</strong>, and learned we had to build a <u>2D game</u> — something simple, not too complex, but with some <em>interactive value</em>.</p>
+    <p>My first thought was a <strong>Space Waves</strong>-style shooter. Then I started thinking about it differently — <em>what if I connected the game concept to something real?</em> Engineering student obstacles: <strong>assignments, exams, attendance</strong>. That felt personal. That felt fun.</p>
+    <div class="callout">💡 Initial idea: Space Waves → Pivot: obstacles as real-life engineering student struggles</div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">02</span>
+      <span class="day-title">The Crash</span>
+    </div>
+    <div class="day-date">Sunday — Day 2</div>
+    <p>I tried to build it. It <em>failed miserably</em>. I couldn't figure out how to put different obstacles together — it was either <u>way too easy</u> or not difficult at all. <strong>Nothing was working.</strong></p>
+    <p>Then my friend suggested the game should work for <strong>all age groups</strong>, not just engineering students. That made sense. But I still had <em>no solution</em> to the core problem.</p>
+    <p>I asked ChatGPT. It mentioned something called a <strong>dodger game</strong> — I had <em>no idea</em> what that was. I didn't know the meme, I didn't know the format, I didn't know how to scale it. That was the end of day two — <u>confused, but somehow still going</u>.</p>
+    <div class="callout orange">😅 First real failure. Didn't even know what a <strong>dodger game</strong> was.</div>
+  </div>
+
+  <!-- DAY 2 continued into Day 3 pivot -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">02→</span>
+      <span class="day-title">The Pivot to Memes</span>
+    </div>
+    <div class="day-date">Sunday (continued)</div>
+    <p>I researched what kind of trouble every individual faces in their daily life — <em>what makes them want to dodge obstacles?</em> That question led to the real insight: it's not just engineering problems. It's <strong>life distractions, daily troubles, things that stop you from being successful.</strong></p>
+    <p>So it became a <strong>dodge game</strong> — you dodge obstacles (emojis) that represent everyday struggles. On that day, I built the basic game idea, applied emojis to the obstacles, and got many <em>"fail trails"</em> from ChatGPT to refine it.</p>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">03</span>
+      <span class="day-title">The Meme Hunt</span>
+    </div>
+    <div class="day-date">Monday — Day 3</div>
+    <p>Now the game needed more life — more fun. I thought: <strong><u>what if hitting an obstacle triggered a meme?</u></strong> The idea was brilliant in my head. The execution? <em>Not so much.</em></p>
+    <p>I couldn't find how to download the right <strong>MP3 files</strong>. It took <strong>3–4 hours</strong> just to figure out the audio format. I tried many approaches. Eventually I reached the conclusion: after hitting an obstacle, a <em>specific meme image</em> would be generated — and since it was too silent, I decided to add <strong>meme sounds</strong> too.</p>
+    <p>Finding audio and downloading everything took <u>a full day</u>. I listened to more than <strong>100 meme sounds</strong> and saw more than <strong>200 meme pictures</strong> — keeping correct names, copying them into folders, checking many versions of the same sound.</p>
+    <div class="callout">🎵 Day 3: Became a full-time meme archivist. 100+ sounds. 200+ images. No regrets.</div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">04</span>
+      <span class="day-title">The Boosters Problem</span>
+    </div>
+    <div class="day-date">Day 4</div>
+    <p>I read in the rulebook that a game should have some extra flair. I thought about adding <strong>boosters</strong> — like <em>coffee, headphones, and food items</em> — that give you extra life when collected. I had the idea and even had a sound ready for it, but <u>couldn't apply it that day</u>.</p>
+    <p>I gave what I had to my <strong>brother</strong> to play-test. His feedback? The boosters were spawning <em>way too much</em> — it was almost impossible to lose. So I reduced the numbers.</p>
+    <p>I tried to get help from ChatGPT for the <strong>JavaScript code</strong>. Got many failed codes. Sometimes I had to <u>write entire sections from scratch</u> again.</p>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">05</span>
+      <span class="day-title">The Time System</span>
+    </div>
+    <div class="day-date">Day 5</div>
+    <p>I read that a game should be about <strong>3 minutes</strong>. So I thought — why not make it feel like a <em>full day</em>? I designed a <strong>time system</strong>: first <strong>30 seconds</strong> = <em>4am–12pm (dawn to afternoon)</em>, next <strong>30 seconds</strong> = <em>12pm–8pm (afternoon to night)</em>, last <strong>30 seconds</strong> = <em>8pm–4am (night to dawn)</em>.</p>
+    <p>I updated the <strong>UI and background</strong> to change according to the time of day. First I tried direct changes, then refined it further. The background <u>evolving with your progress</u> made the game feel alive.</p>
+    <div class="callout">🌅 The day-night cycle was the detail that made people stop and say "wait, that's cool."</div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">06</span>
+      <span class="day-title">Sound Wars</span>
+    </div>
+    <div class="day-date">Day 6</div>
+    <p>Today I tried to connect the meme sounds properly. Some of them I had to cut. I only needed a part of each — then I needed a <strong>glowing shield</strong> mechanic for the <em>headphone booster</em>: when collected, the player <u>glows and is protected</u>, but the shield disappears <strong>after 5 seconds</strong> or after <strong>hitting any 5 obstacles</strong> — and <em>stops glowing</em> when either of those happens. <strong>Lives are limited to 3</strong>, <em>coffee boosts your speed</em>, and after every <strong>5 seconds</strong> of appearing, boosters disappear and <u>new ones spawn in new places</u>.</p>
+    <p>The hardest part: <strong>background music</strong>. I needed the background sound to <u>stop when all lives are lost</u> — that's when the <em>meme sound kicks in</em>. And the meme sound had to <u>stop the moment "Play Again" is clicked</u>. First attempt: tried stopping background music when a booster was collected — <em>bad idea.</em> The logic kept breaking.</p>
+    <p>Got too many <strong>wrong codes</strong> from ChatGPT. Sometimes I had to <u>write the whole thing from scratch</u> again.</p>
+    <div class="callout orange">🔊 Pro tip I learned: never fully trust AI-generated code for audio state management. Always verify.</div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">07</span>
+      <span class="day-title">The Final Polish</span>
+    </div>
+    <div class="day-date">Day 7</div>
+    <p>Did all the last <strong>minimal changes</strong> to the game, then did the <u>online presentation</u>. I made it perfect and submitted it to the judges. <strong>We got selected for the offline round!</strong> The judges were so happy about the <em>sound and the original PPT</em> — we made our presentation even more perfect with the feedback we received.</p>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day-entry">
+    <div class="day-label">
+      <span class="day-number">08</span>
+      <span class="day-title">The Offline Round</span>
+    </div>
+    <div class="day-date">Day 8 — The Big Day</div>
+    <p>We traveled about <strong>30 km</strong> to the offline venue to present <strong><em>DodgeLife: Survive the Chaos</em></strong>. It wasn't perfect — we <em>panicked</em> over which laptop we'd play the game on, and it <u>wasn't working properly at first</u>.</p>
+    <p>But in the end, we <u>adjusted everything</u> and gave our presentation to the <strong>HOD</strong>, who praised us. Then we gave the <strong>PPT presentation</strong> to the judges, followed by a <u>live game demo</u>.</p>
+    <p>The turning point: out of the last <strong>21 finalists</strong>, only <strong>7 were selected</strong>. We were not in it. <em>I felt sad — but I learned something.</em></p>
+    <div class="callout">It's not necessary to always win. What matters is the <em>process</em> — and how far we got at that point.</div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <h2>What This Week Was Really About</h2>
+    <ul>
+      <li>We started this hackathon with just an idea — to build something simple, relatable and fun.</li>
+      <li>Through brainstorming and planning, we developed our concept into a 2D game called DodgeLife: Survive the Chaos.</li>
+      <li>The process involved continuous coding, debugging, and improving features like gameplay, UI, and sound</em>.</li>
+      <li>We faced multiple challenges — bugs, design issues, and time pressure — but solved them step by step.</li>
+      <li>We successfully presented our project online, explaining our idea and giving a live demo.</li>
+      <li>Out of 107 teams, we reached top 21 finalists — which was a proud achievement.</li>
+      <li>Although we didn't make it to the top 7, the experience itself was incredibly valuable.</li>
+      <li>We learned technical skills, problem-solving, and how important polish and presentation are.</li>
+    </ul>
+
+    <div class="closing-quote">
+      "We didn't lose — we just discovered how to win next time. This was not the end of a hackathon. It was the beginning of a mindset where I don't stop until I reach the top."
+      <cite>— From my diary, Day 8</cite>
+    </div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">#hackathon</span>
+    <span class="tag">#gamedev</span>
+    <span class="tag">#javascript</span>
+    <span class="tag">#firsttime</span>
+    <span class="tag">#dodgelife</span>
+    <span class="tag">#codeclutch</span>
+    <span class="tag">#studentlife</span>
+    <span class="tag">#buildinpublic</span>
+  </div>
+
+</main>
+
+</body>
+</html>
